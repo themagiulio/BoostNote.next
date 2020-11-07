@@ -75,18 +75,6 @@ const ThirdPartyServicesTab = () => {
   return (
     <div>
       <Section>
-        <SectionHeader>{t('thirdPartyServices.shortCodes')}</SectionHeader>
-        <pre>[[ YouTube url="VIDEO URL" ]]</pre>
-
-        <pre>[[ Vimeo url="VIDEO URL" ]]</pre>
-
-        <pre>[[ Dailymotion url="VIDEO URL" ]]</pre>
-
-        <pre>[[ GitHub repo="USERNAME/REPOSITORY" ]]</pre>
-
-        <pre>[[ GitHub gist="GIST URL" ]]</pre>
-      </Section>
-      <Section>
         <SectionHeader>{t('thirdPartyServices.gitHub')}</SectionHeader>
         <SectionControl>
           <SectionInput

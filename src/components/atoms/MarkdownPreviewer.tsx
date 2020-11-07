@@ -8,6 +8,7 @@ import remarkMath from 'remark-math'
 import remarkShortCodes from 'remark-shortcodes'
 //import remarkIFrames from 'remark-iframes'
 import remarkGitHub from 'remark-github'
+import remarkCodeSandbox from 'remark-codesandbox'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeReact from 'rehype-react'
@@ -194,6 +195,7 @@ const MarkdownPreviewer = ({
       .use(shortCodeTransformer, 'paragraph')
       .data('settings', {position: false})
       .use(remarkGitHub, { repository: repo })
+      .use(remarkCodeSandbox, { mode: 'button' })
       .use([remarkRehype, { allowDangerousHTML: true }])
       .use(rehypeRaw)
       .use(rehypeSanitize, schema)

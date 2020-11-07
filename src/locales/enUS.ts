@@ -195,6 +195,5 @@ export default {
     // Third Party Services
     'thirdPartyServices.thirdPartyServices' : 'Third Party Services',
     'thirdPartyServices.gitHub' : 'GitHub Integration',
-    'thirdPartyServices.shortCodes' : 'Embedding using ShortCodes',
   },
 }

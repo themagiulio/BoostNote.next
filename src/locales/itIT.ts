@@ -166,6 +166,5 @@ export default {
     // Third Party Services
     'thirdPartyServices.thirdPartyServices' : 'Servizi di Terze Parti',
     'thirdPartyServices.gitHub' : 'Integrazione con GitHub',
-    'thirdPartyServices.shortCodes' : 'Incorpora usando gli ShortCodes',
   },
 }

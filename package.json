@@ -157,6 +157,7 @@
     "rehype-react": "^6.1.0",
     "rehype-sanitize": "^3.0.1",
     "rehype-stringify": "^8.0.0",
+    "remark-codesandbox": "^0.10.0",
     "remark-emoji": "^2.1.0",
     "remark-github": "^10.0.1",
     "remark-iframes": "^4.0.4",
