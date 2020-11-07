@@ -6,6 +6,7 @@ import {
   SectionPrimaryButton,
   SectionSecondaryButton,
   SectionSelect,
+  SectionInput
 } from './styled'
 import CustomizedCodeEditor from '../atoms/CustomizedCodeEditor'
 import CustomizedMarkdownPreviewer from '../atoms/CustomizedMarkdownPreviewer'
@@ -17,7 +18,8 @@ import { capitalize } from '../../lib/string'
 import { useTranslation } from 'react-i18next'
 import { usePreviewStyle, defaultPreviewStyle } from '../../lib/preview'
 import { borderRight, border } from '../../lib/styled/styleFunctions'
-import { FormCheckItem } from '../atoms/form'
+import { FormCheckItem, FormSecondaryButton } from '../atoms/form'
+import { useDebounce } from 'react-use'
 
 const EditorContainer = styled.div`
   ${border}
@@ -92,6 +94,25 @@ const MarkdownTab = () => {
     [setPreferences]
   )
 
+  const [gitHubRepo, setGitHubRepo] = useState(
+    preferences['markdown.gitHubRepo'].toString()
+  )
+  const updateGitHubRepo: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+    (event) => {
+      setGitHubRepo(event.target.value)
+    },
+    [setGitHubRepo]
+  )
+  useDebounce(
+    () => {
+      setPreferences({
+        'markdown.gitHubRepo': gitHubRepo
+      })
+    },
+    500,
+    [gitHubRepo, setPreferences]
+  )
+
   const { t } = useTranslation()
 
   return (
@@ -155,6 +176,16 @@ const MarkdownTab = () => {
           >
             {t('preferences.markdownExportOption')}
           </FormCheckItem>
+        </SectionControl>
+      </Section>
+      <Section>
+        <SectionHeader>{t('preferences.gitHub')}</SectionHeader>
+        <SectionControl>
+          <SectionInput
+            type='string'
+            value={gitHubRepo}
+            onChange={updateGitHubRepo}
+          />
         </SectionControl>
       </Section>
     </div>

@@ -8,6 +8,7 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import rehypeKatex from 'rehype-katex'
+import remarkIFrames from 'remark-iframes'
 import { mergeDeepRight } from 'ramda'
 import gh from 'hast-util-sanitize/lib/github.json'
 import { rehypeCodeMirror } from './../components/atoms/MarkdownPreviewer'
@@ -15,6 +16,8 @@ import { downloadString } from './download'
 import { NoteDoc } from './db/types'
 import { Preferences } from './preferences'
 import { filenamify } from './string'
+import remarkShortCodes from 'remark-shortcodes'
+import { shortCodeTransformer, shortCodeOptions, iframeOptions } from './shortcodes'
 
 const sanitizeSchema = mergeDeepRight(gh, {
   attributes: { '*': ['className'] },
@@ -28,6 +31,9 @@ export const exportNoteAsHtmlFile = async (
   await unified()
     .use(remarkParse)
     .use(remarkMath)
+    .use(remarkShortCodes, shortCodeOptions)
+    .use(shortCodeTransformer, 'paragraph')
+    .data('settings', {position: false})
     .use([remarkRehype, { allowDangerousHTML: false }])
     .use(rehypeCodeMirror, {
       ignoreMissing: true,

@@ -5,6 +5,9 @@ import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import slug from 'remark-slug'
 import remarkMath from 'remark-math'
+import remarkShortCodes from 'remark-shortcodes'
+//import remarkIFrames from 'remark-iframes'
+import remarkGitHub from 'remark-github'
 import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeReact from 'rehype-react'
@@ -23,8 +26,7 @@ import 'katex/dist/katex.min.css'
 import MarkdownCheckbox from './markdown/MarkdownCheckbox'
 import AttachmentImage from './markdown/AttachmentImage'
 import CodeFence from './markdown/CodeFence'
-import remarkShortCodes from 'remark-shortcodes'
-import {shortcodeTransformer} from '../../lib/shortcodes'
+import { shortCodeTransformer, shortCodeOptions, iframeOptions } from '../../lib/shortcodes'
 
 const schema = mergeDeepRight(gh, {
   attributes: {
@@ -154,11 +156,13 @@ export const rehypeCodeMirror = rehypeCodeMirrorAttacher as Plugin<
   [Partial<RehypeCodeMirrorOptions>?]
 >
 
+
 interface MarkdownPreviewerProps {
   content: string
   codeBlockTheme?: string
   style?: string
   theme?: string
+  repo: string
   attachmentMap?: ObjectMap<Attachment>
   updateContent?: (
     newContentOrUpdater: string | ((newValue: string) => string)
@@ -170,6 +174,7 @@ const MarkdownPreviewer = ({
   codeBlockTheme,
   style,
   theme,
+  repo,
   attachmentMap = {},
   updateContent,
 }: MarkdownPreviewerProps) => {
@@ -183,10 +188,12 @@ const MarkdownPreviewer = ({
   const markdownProcessor = useMemo(() => {
     return unified()
       .use(remarkParse)
-      .use(remarkShortCodes, { startBlock: "[[", endBlock: "]]" })
-      .use(shortcodeTransformer)
       .use(slug)
       .use(remarkEmoji, { emoticon: false })
+      .use(remarkShortCodes, shortCodeOptions)
+      .use(shortCodeTransformer, 'paragraph')
+      .data('settings', {position: false})
+      .use(remarkGitHub, { repository: repo })
       .use([remarkRehype, { allowDangerousHTML: true }])
       .use(rehypeRaw)
       .use(rehypeSanitize, schema)

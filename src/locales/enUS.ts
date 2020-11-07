@@ -179,6 +179,7 @@ export default {
     'preferences.markdownPreview': 'Markdown Preview',
     'preferences.markdownExport': 'Export',
     'preferences.markdownExportOption': 'Include Front Matter',
+    'preferences.gitHub' : 'GitHub Integration',
 
     // Preferences ImportTab
     'preferences.import': 'Import',

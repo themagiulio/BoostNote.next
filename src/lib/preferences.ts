@@ -59,6 +59,7 @@ export interface Preferences {
   'markdown.previewStyle': string
   'markdown.codeBlockTheme': string
   'markdown.includeFrontMatter': boolean
+  'markdown.gitHubRepo': string
 }
 
 function loadPreferences() {
@@ -95,8 +96,7 @@ const basePreferences: Preferences = {
   'editor.theme': 'material-darker',
   'editor.controlMode': '2-toggles',
   'editor.fontSize': 15,
-  'editor.fontFamily':
-    'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+  'editor.fontFamily': 'SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
   'editor.indentType': 'spaces',
   'editor.indentSize': 4,
   'editor.keyMap': 'default',
@@ -105,6 +105,7 @@ const basePreferences: Preferences = {
   'markdown.previewStyle': 'default',
   'markdown.codeBlockTheme': 'material-darker',
   'markdown.includeFrontMatter': true,
+  'markdown.gitHubRepo': ''
 }
 
 function usePreferencesStore() {
