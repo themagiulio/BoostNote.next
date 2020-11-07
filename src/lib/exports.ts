@@ -8,7 +8,9 @@ import rehypeRaw from 'rehype-raw'
 import rehypeSanitize from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
 import rehypeKatex from 'rehype-katex'
-import remarkIFrames from 'remark-iframes'
+//import remarkIFrames from 'remark-iframes'
+import remarkGitHub from 'remark-github'
+import remarkCodeSandbox from 'remark-codesandbox'
 import { mergeDeepRight } from 'ramda'
 import gh from 'hast-util-sanitize/lib/github.json'
 import { rehypeCodeMirror } from './../components/atoms/MarkdownPreviewer'
@@ -34,6 +36,8 @@ export const exportNoteAsHtmlFile = async (
     .use(remarkShortCodes, shortCodeOptions)
     .use(shortCodeTransformer, 'paragraph')
     .data('settings', {position: false})
+    .use(remarkGitHub, { repository: preferences['thirdPartyServices.gitHubRepo'] })
+    .use(remarkCodeSandbox, { mode: 'button' })
     .use([remarkRehype, { allowDangerousHTML: false }])
     .use(rehypeCodeMirror, {
       ignoreMissing: true,
@@ -67,10 +71,13 @@ export const exportNoteAsHtmlFile = async (
 
 export const exportNoteAsMarkdownFile = async (
   note: NoteDoc,
+  preferences: Preferences,
   { includeFrontMatter }: { includeFrontMatter: boolean }
 ): Promise<void> => {
   await unified()
     .use(remarkParse)
+    .use(remarkGitHub, { repository: preferences['thirdPartyServices.gitHubRepo'] })
+    .use(remarkCodeSandbox, { mode: 'button' })
     .use(remarkStringify)
     .process(note.content, (err, file) => {
       if (err != null) {

@@ -186,7 +186,7 @@ const NotePageToolbar = ({
             type: 'normal',
             label: 'Markdown export',
             click: async () =>
-              await exportNoteAsMarkdownFile(note, {
+              await exportNoteAsMarkdownFile(note, preferences, {
                 includeFrontMatter: preferences['markdown.includeFrontMatter'],
               }),
           },
