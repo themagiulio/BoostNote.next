@@ -23,6 +23,8 @@ import 'katex/dist/katex.min.css'
 import MarkdownCheckbox from './markdown/MarkdownCheckbox'
 import AttachmentImage from './markdown/AttachmentImage'
 import CodeFence from './markdown/CodeFence'
+import remarkShortCodes from 'remark-shortcodes'
+import {shortcodeTransformer} from '../../lib/shortcodes'
 
 const schema = mergeDeepRight(gh, {
   attributes: {
@@ -181,6 +183,8 @@ const MarkdownPreviewer = ({
   const markdownProcessor = useMemo(() => {
     return unified()
       .use(remarkParse)
+      .use(remarkShortCodes, { startBlock: "[[", endBlock: "]]" })
+      .use(shortcodeTransformer)
       .use(slug)
       .use(remarkEmoji, { emoticon: false })
       .use([remarkRehype, { allowDangerousHTML: true }])
