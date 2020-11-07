@@ -179,7 +179,6 @@ export default {
     'preferences.markdownPreview': 'Markdown Preview',
     'preferences.markdownExport': 'Export',
     'preferences.markdownExportOption': 'Include Front Matter',
-    'preferences.gitHub' : 'GitHub Integration',
 
     // Preferences ImportTab
     'preferences.import': 'Import',
@@ -192,5 +191,10 @@ export default {
     'preferences.importFlow4': '4. Upload!',
     'preferences.importRemove': 'remove',
     'preferences.importUpload': 'Upload',
+
+    // Third Party Services
+    'thirdPartyServices.thirdPartyServices' : 'Third Party Services',
+    'thirdPartyServices.gitHub' : 'GitHub Integration',
+    'thirdPartyServices.shortCodes' : 'Embedding using ShortCodes',
   },
 }

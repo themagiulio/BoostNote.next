@@ -8,6 +8,7 @@ import EditorTab from './EditorTab'
 import MarkdownTab from './MarkdownTab'
 import AboutTab from './AboutTab'
 import BillingTab from './BillingTab'
+import ThirdPartyServicesTab from './ThirdPartyServicesTab'
 import {
   backgroundColor,
   closeIconColor,
@@ -137,6 +138,8 @@ const PreferencesModal = () => {
         return <EditorTab />
       case 'markdown':
         return <MarkdownTab />
+      case 'ThirdPartyServices':
+        return <ThirdPartyServicesTab />
       case 'about':
         return <AboutTab />
       case 'billing':
@@ -199,6 +202,12 @@ const PreferencesModal = () => {
               label='Markdown'
               tab='markdown'
               active={tab === 'markdown'}
+              setTab={setTab}
+            />
+            <TabButton
+              label={t('thirdPartyServices.thirdPartyServices')}
+              tab='ThirdPartyServices'
+              active={tab === 'ThirdPartyServices'}
               setTab={setTab}
             />
             <TabButton

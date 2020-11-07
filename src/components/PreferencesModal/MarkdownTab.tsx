@@ -178,16 +178,6 @@ const MarkdownTab = () => {
           </FormCheckItem>
         </SectionControl>
       </Section>
-      <Section>
-        <SectionHeader>{t('preferences.gitHub')}</SectionHeader>
-        <SectionControl>
-          <SectionInput
-            type='string'
-            value={gitHubRepo}
-            onChange={updateGitHubRepo}
-          />
-        </SectionControl>
-      </Section>
     </div>
   )
 }

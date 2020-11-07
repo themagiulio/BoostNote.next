@@ -59,7 +59,9 @@ export interface Preferences {
   'markdown.previewStyle': string
   'markdown.codeBlockTheme': string
   'markdown.includeFrontMatter': boolean
-  'markdown.gitHubRepo': string
+
+  // Third Party Services
+  'thirdPartyServices.gitHubRepo': string
 }
 
 function loadPreferences() {
@@ -105,7 +107,9 @@ const basePreferences: Preferences = {
   'markdown.previewStyle': 'default',
   'markdown.codeBlockTheme': 'material-darker',
   'markdown.includeFrontMatter': true,
-  'markdown.gitHubRepo': ''
+
+  // Third Party Services
+  'thirdPartyServices.gitHubRepo': 'https://github.com/themagiulio/BoostNode.next'
 }
 
 function usePreferencesStore() {

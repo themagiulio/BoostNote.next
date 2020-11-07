@@ -162,5 +162,10 @@ export default {
     'preferences.importFlow4': '4. Carica!',
     'preferences.importRemove': 'Rimuovi',
     'preferences.importUpload': 'Carica',
+
+    // Third Party Services
+    'thirdPartyServices.thirdPartyServices' : 'Servizi di Terze Parti',
+    'thirdPartyServices.gitHub' : 'Integrazione con GitHub',
+    'thirdPartyServices.shortCodes' : 'Incorpora usando gli ShortCodes',
   },
 }

@@ -26,7 +26,7 @@ const CustomizedMarkdownPreviewer = ({
       attachmentMap={attachmentMap}
       codeBlockTheme={preferences['markdown.codeBlockTheme']}
       theme={preferences['general.theme']}
-      repo={preferences['markdown.gitHubRepo']}
+      repo={preferences['thirdPartyServices.gitHubRepo']}
       style={previewStyle}
       updateContent={updateContent}
     />
